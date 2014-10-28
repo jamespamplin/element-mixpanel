@@ -40,7 +40,7 @@
 </polymer-element>
 
 
-<polymer-element name="mixpanel-data" attributes="config endpoint starttime endtime sink">
+<polymer-element name="mixpanel-data" attributes="config endpoint query sink">
   <script src="../mixpanel-data.js/mixpanel-data.browser.min.js"></script>
   <script>
     Polymer('mixpanel-data', {
@@ -48,8 +48,7 @@
       observe: {
         'config': 'update',
         'endpoint': 'update',
-        'starttime': 'update',
-        'endtime': 'update'
+        'query': 'update'
       },
 
       update: function() {
@@ -62,7 +61,7 @@
         var config = this.config,
             client = mxData.client().apiKey(config.key).apiSecret(config.secret);
 
-        client.get(this.endpoint, {}, function(err, resp) {
+        client.get(this.endpoint, this.query || {}, function(err, resp) {
           self.sink = resp.body;
         });
       }
