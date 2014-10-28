@@ -1,0 +1,28 @@
+{
+  "name": "element-mixpanel",
+  "version": "0.1.0",
+  "authors": [
+    "James Pamplin <james@jamespamplin.com>"
+  ],
+  "description": "Web Component for retrieving data from mixpanel.",
+  "keywords": [
+    "web-component",
+    "web-components",
+    "polymer",
+    "mixpanel"
+  ],
+  "main": "element-mixpanel.html",
+  "license": "MIT",
+  "homepage": "https://github.com/jamespamplin/element-mixpanel/",
+  "ignore": [
+    "/.*",
+    "/tests/"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#^0.4.2",
+    "mixpanel-data.js": "jamespamplin/mixpanel-data.js"
+  },
+  "devDependencies": {
+    "web-component-tester": "Polymer/web-component-tester#^0.7.3"
+  }
+}

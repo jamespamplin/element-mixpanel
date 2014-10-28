@@ -1,0 +1,71 @@
+<link rel="import" href="../polymer/polymer.html">
+
+
+<polymer-element name="mixpanel-config" attributes="key secret sink">
+  <script>
+    Polymer('mixpanel-config', {
+
+      /**
+      * Mixpanel API key.
+      */
+      key: undefined,
+
+      /**
+      * Mixpanel API secret.
+      */
+      secret: undefined,
+
+      /**
+       * Target for config output.
+       */
+      sink: undefined,
+
+      observe: {
+        'key': 'update',
+        'secret': 'update'
+      },
+
+      ready: function() {
+        this.update();
+      },
+
+      update: function() {
+        this.sink = {
+          key: this.key,
+          secret: this.secret
+        };
+      }
+    });
+  </script>
+</polymer-element>
+
+
+<polymer-element name="mixpanel-data" attributes="config endpoint starttime endtime sink">
+  <script src="../mixpanel-data.js/mixpanel-data.js"></script>
+  <script>
+    Polymer('mixpanel-data', {
+
+      observe: {
+        'config': 'update',
+        'endpoint': 'update',
+        'starttime': 'update',
+        'endtime': 'update'
+      },
+
+      update: function() {
+        var self = this;
+
+        if (!this.config) {
+          return;
+        }
+
+        var config = this.config,
+            client = mxData.client().apiKey(config.key).apiSecret(config.secret);
+
+        client.get(this.endpoint, {}, function(err, resp) {
+          self.sink = resp.body;
+        });
+      }
+    });
+  </script>
+</polymer-element>

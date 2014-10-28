@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <title>element-mixpanel</title>
+
+  <script src="../../platform/platform.js"></script>
+  <script src="../../web-component-tester/browser.js"></script>
+
+  <!-- Step 1: import the element to test -->
+  <link rel="import" href="../element-mixpanel.html">
+</head>
+<body>
+
+  <!-- You use the document as a place to set up your fixtures. -->
+  <mixpanel-config key="12345678" secret="iAmASecretInnit" sink="{{mixpanelConfig}}"></mixpanel-config>
+  <mixpanel-data config="{{mixpanelConfig}}" endpoint="engage"></mixpanel-data>
+
+  <script>
+    var mxConfigElem = document.querySelector('mixpanel-config'),
+        mxDataElem = document.querySelector('mixpanel-data');
+
+
+    suite('<mixpanel-config>', function() {
+      test('API key set', function() {
+        assert.equal(mxConfigElem.key, '12345678');
+      });
+
+      test('API secret set', function() {
+        assert.equal(mxConfigElem.secret, 'iAmASecretInnit');
+      });
+
+      test('Sink config', function() {
+        assert.isObject(mxConfigElem.sink);
+        assert.equal(mxConfigElem.sink.key, '12345678');
+        assert.equal(mxConfigElem.sink.secret, 'iAmASecretInnit');
+      });
+    });
+
+
+    suite('<mixpanel-data>', function() {
+
+      // TODO: mock out, or create a test mixpanel account
+
+    });
+
+  </script>
+
+</body>
+</html>

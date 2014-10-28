@@ -1,0 +1,14 @@
+{
+  "name": "element-mixpanel",
+  "version": "0.1.0",
+  "description": "Web Component for retrieving data from mixpanel",
+  "main": "element-mixpanel.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "James Pamplin",
+  "license": "MIT",
+  "devDependencies": {
+    "bower": "^1.3.12"
+  }
+}
